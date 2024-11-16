@@ -1,4 +1,4 @@
-pub type Lcg32 UInt
+pub(all) type Lcg32 UInt
 
 let mul_const : UInt = 0x41c64e6d
 
@@ -87,7 +87,7 @@ fn get_index_from_base(seed : UInt, from : UInt) -> UInt {
   result
 }
 
-pub fn get_index(self : Lcg32, ~from : UInt = 0) -> UInt {
+pub fn get_index(self : Lcg32, from~ : UInt = 0) -> UInt {
   if from == 0 {
     get_index_from_zero(self._)
   } else {

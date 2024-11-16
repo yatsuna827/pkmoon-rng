@@ -1,10 +1,10 @@
-pub type Lcg32Ref Ref[Lcg32]
+pub(all) type Lcg32Ref Ref[Lcg32]
 
 pub fn to_ref(self : Lcg32) -> Lcg32Ref {
   Lcg32Ref(Ref::new(self))
 }
 
-pub fn advance(self : Lcg32Ref, ~n : UInt = 1) -> Unit {
+pub fn advance(self : Lcg32Ref, n~ : UInt = 1) -> Unit {
   match n {
     0 => Unit::default()
     1 => self._.update(Lcg32::next)
@@ -20,15 +20,15 @@ pub fn to_string(self : Lcg32Ref) -> String {
   self._.val.to_string()
 }
 
-pub fn get_rand(self : Lcg32Ref, ~m : Int? = None) -> UInt {
+pub fn get_rand(self : Lcg32Ref, m?: Int) -> UInt {
   match m {
     None => self..advance()._.val._ >> 16
-    Some(m) => self..advance()._.val._ >> (16 % m)
+    Some(n) => self..advance()._.val._ >> (16 % n)
   }
 }
 
-pub fn get_index(self : Lcg32Ref, ~from : UInt = 0) -> UInt {
-  self._.val.get_index(~from)
+pub fn get_index(self : Lcg32Ref, from~ : UInt = 0) -> UInt {
+  self._.val.get_index(from~)
 }
 
 test "jump" {
