@@ -2,8 +2,11 @@
   "is-main": true,
   "import": [
     {
-      "path": "yatsuna827/pkmoon-rng",
+      "path": "yatsuna827/pkmoon-rng/gclcg",
       "alias": "pk_rng"
+    },{
+      "path": "yatsuna827/pkmoon-rng/xd_togepii",
+      "alias": "togepii"
     }
   ]
 }

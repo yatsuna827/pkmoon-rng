@@ -1,0 +1,8 @@
+{
+  "import": [
+    {
+      "path": "yatsuna827/pkmoon-rng/lib",
+      "alias": "lib"
+    }
+  ]
+}
