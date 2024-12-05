@@ -20,10 +20,10 @@ pub fn to_string(self : Lcg32Ref) -> String {
   self._.val.to_string()
 }
 
-pub fn get_rand(self : Lcg32Ref, m? : Int) -> UInt {
+pub fn get_rand(self : Lcg32Ref, m? : UInt) -> UInt {
   match m {
     None => self..advance()._.val._ >> 16
-    Some(n) => self..advance()._.val._ >> (16 % n)
+    Some(n) => (self..advance()._.val._ >> 16) % n
   }
 }
 

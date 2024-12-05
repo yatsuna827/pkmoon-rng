@@ -16,11 +16,11 @@ pub fn count_up(self : OutskirtStand, lcg : @lcg.Lcg32Ref) -> Unit {
 
   // カウンタのカウントアップ処理
   if self.left.count_up(lcg) {
-    self.lazy_queue.push(20)
-    self.lazy_queue.push(30)
+    self.lazy_queue.push(10)
   }
   if self.right.count_up(lcg) {
-    self.lazy_queue.push(10)
+    self.lazy_queue.push(20)
+    self.lazy_queue.push(30)
   }
   self.lazy_queue = self.lazy_queue.filter(fn(x) { x > 0 }).map(fn(x) { x - 1 })
 }
@@ -66,14 +66,9 @@ fn append(self : MainCounter, next : SubCounter) -> Unit {
 }
 
 fn remove_dead_nodes(self : MainCounter) -> Unit {
-  self.next = loop self.next, None {
-    Some(x), cur =>
-      if x.is_living() {
-        break Some(x)
-      } else {
-        continue cur, x.next
-      }
-    None, x => break x
+  self.next = loop self.next {
+    Some(x) => if x.is_living() { break Some(x) } else { continue x.next }
+    None => break None
   }
 }
 
@@ -118,14 +113,9 @@ fn is_living(self : SubCounter) -> Bool {
 }
 
 fn remove_dead_nodes(self : SubCounter) -> Unit {
-  self.next = loop self.next, None {
-    Some(x), cur =>
-      if x.is_living() {
-        break Some(x)
-      } else {
-        continue cur, x.next
-      }
-    None, x => break x
+  self.next = loop self.next {
+    Some(x) => if x.is_living() { break Some(x) } else { continue x.next }
+    None => break None
   }
 }
 
